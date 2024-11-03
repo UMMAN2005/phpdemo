@@ -191,6 +191,28 @@
             echo "<div class='error'>Error deleting task: " . $conn->error . "</div>";
         }
     }
+// Display tasks
+$sql = "SELECT * FROM tasks";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<ul>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<li class='task'>{$row['task']} 
+              <form method='GET' style='display:inline;'>
+                  <button type='submit' name='delete' value='{$row['id']}' style='color: red; background: none; border: none; cursor: pointer;'>X</button>
+              </form>
+              <form method='POST' style='display:inline;'>
+                  <input type='text' name='task' placeholder='Rename task' required>
+                  <input type='hidden' name='id' value='{$row['id']}'>
+                  <button type='submit' name='rename'>Rename</button>
+              </form>
+              </li>";
+    }
+    echo "</ul>";
+} else {
+    echo "<div>No tasks found.</div>";
+}
 
     // Rename task
     if (isset($_POST['rename'])) {
@@ -204,26 +226,7 @@
         }
     }
 
-    // Display tasks
-    $sql = "SELECT * FROM tasks";
-    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        echo "<ul>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<li class='task'>{$row['task']} 
-                  <a href='?delete={$row['id']}'>Delete</a>
-                  <form method='POST' style='display:inline;'>
-                      <input type='text' name='task' placeholder='Rename task' required>
-                      <input type='hidden' name='id' value='{$row['id']}'>
-                      <button type='submit' name='rename'>Rename</button>
-                  </form>
-                  </li>";
-        }
-        echo "</ul>";
-    } else {
-        echo "<div>No tasks found.</div>";
-    }
 
     $conn->close();
     ?>
