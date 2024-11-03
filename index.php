@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List App</title>
     <style>
+        /* Body Styling */
         body {
             display: flex;
             justify-content: center;
@@ -13,36 +14,129 @@
             min-height: 100vh;
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: #333;
         }
+        
+        /* Container Styling */
         .container {
             text-align: center;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             max-width: 400px;
-            background-color: #fff;
+            background-color: #ffffff;
+            animation: fadeIn 0.6s ease-out;
         }
+        
+        /* Title Styling */
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Form and Input Styling */
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            flex-grow: 1;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #66a6ff;
+        }
+        
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #66a6ff;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #5891e4;
+        }
+        
+        /* Task List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
         .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin: 5px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f4f6f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
         }
+        
+        .task:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Success and Error Styling */
         .success, .error {
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             margin-bottom: 10px;
+            text-align: center;
         }
+        
         .success {
             color: #4CAF50;
             background-color: #e8f5e9;
         }
+        
         .error {
             color: #f44336;
             background-color: #ffebee;
         }
+        
+        /* Rename Form Inline Styling */
+        form[style='display:inline;'] input[type="text"] {
+            width: auto;
+            padding: 5px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        form[style='display:inline;'] button {
+            padding: 5px 10px;
+            font-size: 0.9em;
+            background-color: #ff6f61;
+        }
+        
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
     </style>
 </head>
 <body>
-
 <div class="container">
     <h1>Todo List</h1>
     <form method="POST">
